@@ -29,18 +29,16 @@ export class UrlsListComponent implements OnInit {
     ngOnInit() {
         this.isLoading = true;
         
-        setTimeout(() => {
-            this.urlsService
-                .getUrls()
-                .then(urls => 
-                    {
-                        this.urls = urls;
-                        this.isLoading = false;
-                    })
-                    .catch(() => {
-                        this.isLoading = false;
-                    });
-        }, 1000);
+        this.urlsService
+            .getUrls()
+            .then(urls => 
+                {
+                    this.urls = urls;
+                    this.isLoading = false;
+                })
+                .catch(() => {
+                    this.isLoading = false;
+                });
 
     }
 }
