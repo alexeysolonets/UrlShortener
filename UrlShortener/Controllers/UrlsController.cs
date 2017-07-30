@@ -20,7 +20,6 @@ namespace UrlShortener.Controllers
 	/// В настоящем проекте вместо моделей из слоя Bll.Model я бы использовал специальные DTO
 	/// </remarks>
     [Produces("application/json")]
-	[Route("api/urls")]
 	public class UrlsController : Controller
 	{
 		public IQueryProcessor QueryProcessor { get; set; }
@@ -32,6 +31,7 @@ namespace UrlShortener.Controllers
 		const long CURRENT_USER_ID = 1;
 
 		[HttpGet]
+		[Route("api/urls")]
 		public IEnumerable<Url> GetAll()
 		{
 			return QueryProcessor.Process(new FindUrlsByUser.Query
@@ -41,6 +41,7 @@ namespace UrlShortener.Controllers
 		}
 
 		[HttpPost]
+		[Route("api/urls")]
 		public void Post([FromBody]Url value)
 		{
 			var now = DateTime.Now;

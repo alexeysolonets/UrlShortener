@@ -18,9 +18,6 @@ namespace UrlShortener
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                      //.UseApplicationInsights()
-                      .UseSetting("detailedErrors", "true")
-                      .CaptureStartupErrors(true)
                 .Build();
 
             host.Run();
