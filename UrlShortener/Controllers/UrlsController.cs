@@ -20,7 +20,7 @@ namespace UrlShortener.Controllers
 	/// В настоящем проекте вместо моделей из слоя Bll.Model я бы использовал специальные DTO
 	/// </remarks>
     [Produces("application/json")]
-    [Route("api/urls")]
+	[Route("api/urls")]
 	public class UrlsController : Controller
 	{
 		public IQueryProcessor QueryProcessor { get; set; }
