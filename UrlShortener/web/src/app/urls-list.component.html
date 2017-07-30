@@ -1,0 +1,31 @@
+<div *ngIf="isLoading">Loading...</div>
+
+<div *ngIf="!isLoading">
+    <h1>Your URLs:</h1>
+    <table class="table">
+        <tr>
+            <th>Original</th>
+            <th>Short</th>
+            <th>Redirected</th>
+        </tr>
+
+        <tr *ngFor="let url of urls">
+            <td>
+                <a href="{{url.original}}" title="{{url.original}}" target="_blank">
+                    {{url.original.length > 50 ? url.original.substr(0, 50) + "..." : url.original}}
+                </a>
+            </td>
+            <td>
+                <div>
+                    <a href="http://urlshortenertinkoff.azurewebsites.net/go/{{url.short}}" target="_blank">
+                        {{url.short}}
+                    </a>
+                </div>
+                <div class="column-created">
+                    {{url.created | date:'medium' }}
+                </div>
+            </td>
+            <td> {{url.redirectCount}} </td>
+        </tr>
+    </table>
+</div>

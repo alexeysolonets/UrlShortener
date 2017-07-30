@@ -1,0 +1,33 @@
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <div class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand">{{title}}</h3>
+          <nav>
+            <ul class="nav masthead-nav">
+              <li><a routerLink="shorten" routerLinkActive="active">Shorten a URL</a></li>
+              <li><a routerLink="urls-list" routerLinkActive="active">List of your URLs</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="inner cover">
+        <router-outlet></router-outlet> 
+      </div>
+
+      <div class="mastfoot">
+        <div class="inner">
+          <p>URL Shortener for <a href="http://www.tinkoff.ru">Tinkoff</a>, by <a href="https://github.com/alexeysolonets">@alexeysolonets</a>.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
