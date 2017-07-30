@@ -65,7 +65,10 @@ namespace UrlShortener
 
 			app.UseDefaultFiles();
             app.UseStaticFiles();
-			app.UseMvc();
+
+            app.UseMvc(routes => {
+				routes.MapRoute("Spa", "{*url}", defaults: new { controller = "Home", action = "Index" });
+			});
         }
     }
 }
