@@ -46,17 +46,19 @@ namespace UrlShortener.Controllers
 		{
 			var now = DateTime.Now;
 
-			var shortUrl = QueryProcessor.Process(new EncodeDecodeUrl.Encode
+            var shortUrl = QueryProcessor.Process(new EncodeDecodeUrl.Encode
 			{
 				Created = now,
 				UserId = CURRENT_USER_ID
 			});
 
+            var original = FixUrl(value.Original);
+
 			CommandProcessor.Process(new CreateShortUrl.Command
 			{
 				Created = now,
 				UserId = CURRENT_USER_ID,
-				OriginalUrl = value.Original,
+                OriginalUrl = original,
 				ShortUrl = shortUrl
 			});
 		}
@@ -91,7 +93,27 @@ namespace UrlShortener.Controllers
 				Id = url.Id
 			});
 
-            return Redirect(url.Original);
+            var original = this.FixUrl(url.Original);
+
+            return Redirect(original);
 		}
+
+        /// <summary>
+        /// Fixs the URL.
+        /// </summary>
+        /// <returns>The URL.</returns>
+        /// <param name="url">URL.</param>
+        private string FixUrl(string url) 
+        {
+            if (Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out Uri uri))
+            {
+				if (!uri.IsAbsoluteUri) 
+				{
+					return new Uri("http://" + uri).AbsoluteUri;
+				}
+            }
+
+            return url;
+        }
 	}
 }
